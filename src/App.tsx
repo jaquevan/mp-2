@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Poke from "./components/Poke.tsx";
+import styled from "styled-components";
+import {useEffect, useState} from "react";
+import {Character} from "./interfaces/Charcters.ts";
 
-function App() {
-  const [count, setCount] = useState(0)
+const ParentDiv=styled.div`
+    width: 80vw;
+    margin: auto;
+    border: 5px darkgoldenrod solid;
+`;
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+export default function App(){
+
+    // useState Hook to store Data.
+    const [data, setData] = useState<Character[]>([]);
+
+    // useEffect Hook for error handling and re-rendering.
+    useEffect(() => {
+        async function fetchData(): Promise<void> {
+            const rawData = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+            const {results} : {results: Character[]} = await rawData.json();
+            setData(results);
+        }
+        fetchData()
+            .then(() => console.log("Data fetched successfully"))
+            .catch((e: Error) => console.log("There was the error: " + e));
+    }, [data.length]);
+
+    return(
+        <ParentDiv>
+            <Poke data={data}/>
+        </ParentDiv>
+    )
 }
-
-export default App
