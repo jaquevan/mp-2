@@ -1,4 +1,4 @@
-import Poke from "./components/Poke.tsx";
+import DBZ from "./components/DBZ.tsx";
 import styled from "styled-components";
 import {useEffect, useState} from "react";
 import {Character} from "./interfaces/Charcters.ts";
@@ -6,10 +6,8 @@ import {Character} from "./interfaces/Charcters.ts";
 const ParentDiv=styled.div`
     width: 80vw;
     margin: auto;
-    border: 5px darkgoldenrod solid;
+    border: 5px blue solid;
 `;
-
-
 export default function App(){
 
     // useState Hook to store Data.
@@ -18,7 +16,7 @@ export default function App(){
     // useEffect Hook for error handling and re-rendering.
     useEffect(() => {
         async function fetchData(): Promise<void> {
-            const rawData = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+            const rawData = await fetch("https://dragonball-api.com/api/characters");
             const {results} : {results: Character[]} = await rawData.json();
             setData(results);
         }
@@ -29,7 +27,7 @@ export default function App(){
 
     return(
         <ParentDiv>
-            <Poke data={data}/>
+            <DBZ data={data}/>
         </ParentDiv>
     )
 }
