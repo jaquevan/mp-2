@@ -1,12 +1,12 @@
-import DBZ from "./components/DBZ.tsx";
+import DragonBall from "./components/DBZ.tsx";
 import styled from "styled-components";
 import {useEffect, useState} from "react";
-import {Character} from "./interfaces/Charcters.ts";
+import {Character} from "./interfaces/Characters.ts";
 
 const ParentDiv=styled.div`
     width: 80vw;
     margin: auto;
-    border: 5px blue solid;
+    border: 8px dodgerblue solid;
 `;
 export default function App(){
 
@@ -17,8 +17,8 @@ export default function App(){
     useEffect(() => {
         async function fetchData(): Promise<void> {
             const rawData = await fetch("https://dragonball-api.com/api/characters");
-            const {results} : {results: Character[]} = await rawData.json();
-            setData(results);
+            const {items} : {items: Character[]} = await rawData.json();
+            setData(items);
         }
         fetchData()
             .then(() => console.log("Data fetched successfully"))
@@ -27,7 +27,7 @@ export default function App(){
 
     return(
         <ParentDiv>
-            <DBZ data={data}/>
+            <DragonBall data={data}/>
         </ParentDiv>
     )
 }
