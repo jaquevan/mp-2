@@ -8,7 +8,7 @@ const AllCharsDiv=styled.div`
     background-color: darkslateblue;
 `;
 
-const SingleCharDiv = styled.div<{maxKi: string}>`
+const SingleCharDiv = styled.div<{race: string}>`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -21,20 +21,20 @@ const SingleCharDiv = styled.div<{maxKi: string}>`
     color: white;
     font: italic small-caps bold calc(1px + 1vw) "Arial Black", "Monospaced";
     text-align: center;
-
     
     object-fit: contain;
     
     &:hover{
-        color: darkorange;
         transform: scale(1.05);
         border: 7px darkorange ridge;
-
+        
+        // some fun conditionals that interact with single chars that are saiyan
+        color: ${(props) => (props.race === "Saiyan" ? 'dodgerblue' : 'darkorange')};
+        background-color: ${(props) => (props.race === "Saiyan" ? 'yellow' : 'transparent')};
+        border-color: ${(props) => (props.race === "Saiyan" ? 'dodgerblue' : 'darkorange')};
+        
     }
-
-    //body {
-    //    background: dimgrey;
-    //}
+    
     p {
         color: yellow;
     }
@@ -69,7 +69,7 @@ export default function DragonBall(props : { data:Character[] } ){
         <AllCharsDiv >
             {
                 props.data.map((char: Character) =>
-                    <SingleCharDiv key={char.id} maxKi={char.maxKi}>
+                    <SingleCharDiv key={char.id} race={char.race}>
                         <h1>{char.name}</h1>
                         <img src={char.image} alt={`image of ${char.name}`}/>
                         <h3>Affiliation: {char.affiliation}</h3>
