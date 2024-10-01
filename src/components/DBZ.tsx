@@ -27,8 +27,6 @@ const SingleCharDiv = styled.div<{race: string}>`
     &:hover{
         transform: scale(1.05);
         border: 7px darkorange ridge;
-        
-        // some fun conditionals that interact with single chars that are saiyan
         color: ${(props) => (props.race === "Saiyan" ? 'dodgerblue' : 'darkorange')};
         background-color: ${(props) => (props.race === "Saiyan" ? 'yellow' : 'transparent')};
         border-color: ${(props) => (props.race === "Saiyan" ? 'dodgerblue' : 'darkorange')};
