@@ -11,8 +11,10 @@ const AllCharsDiv=styled.div`
 const SingleCharDiv = styled.div<{race: string}>`
     display: flex;
     flex-direction: column;
+    
     justify-content: space-between;
     align-items: center;
+    
     width: 18%;
     padding: 1%;
     margin: 1%;
@@ -24,24 +26,21 @@ const SingleCharDiv = styled.div<{race: string}>`
     
     object-fit: contain;
     
-    
+    // this is used to make readble when colors change on hover
     &:hover p{
         color: white;
     }
-    
+    // makes the div look responsive when hovered
     &:hover{
         transform: scale(1.05);
-        border: 7px darkorange ridge;
         
-        
-
         // this changes the styling if the charachters race is a saiyan, perhaps will add for other races like namek
         ${(props) => props.race === "Saiyan" ? `
                 color: dodgerblue;
                 background-color: gold;
                 border-color: dodgerblue;
                 `: ""}
-
+        // boring styles for human 
         ${(props) => props.race === "Human" ? `
                 color: black;
                 background-color: burlywood;
@@ -58,8 +57,9 @@ const SingleCharDiv = styled.div<{race: string}>`
         ${(props) => props.race === "Frieza Race" ? `
                 color: hotpink;
                 background-color: grey;
-                border-color: fuchsia; ` : ""}
-
+                border-color: fuchsia; ` : ""} 
+        
+        //Android Styling 
         ${(props) => props.race === "Android" ? `
                 color: lime;
                 background-color: black;
@@ -91,9 +91,6 @@ const SingleCharDiv = styled.div<{race: string}>`
     }
     
 `;
-
-
-
 
 export default function DragonBall(props : { data:Character[] } ){
     return (
