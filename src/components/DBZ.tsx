@@ -24,14 +24,47 @@ const SingleCharDiv = styled.div<{race: string}>`
     
     object-fit: contain;
     
+    
+    &:hover p{
+        color: white;
+    }
+    
     &:hover{
         transform: scale(1.05);
         border: 7px darkorange ridge;
-        color: ${(props) => (props.race === "Saiyan" ? 'dodgerblue' : 'darkorange')};
-        background-color: ${(props) => (props.race === "Saiyan" ? 'yellow' : 'transparent')};
-        border-color: ${(props) => (props.race === "Saiyan" ? 'dodgerblue' : 'darkorange')};
         
-    }
+        
+
+        // this changes the styling if the charachters race is a saiyan, perhaps will add for other races like namek
+        ${(props) => props.race === "Saiyan" ? `
+                color: dodgerblue;
+                background-color: gold;
+                border-color: dodgerblue;
+                `: ""}
+
+        ${(props) => props.race === "Human" ? `
+                color: black;
+                background-color: burlywood;
+                border-color: brown;
+                `: ""}
+        
+        //Namekian styling
+        ${(props) => props.race === "Namekian" ? `
+                color: purple;
+                background-color: green;
+                border-color: purple ` : ""}
+        
+        //Frieza Styling 
+        ${(props) => props.race === "Frieza Race" ? `
+                color: hotpink;
+                background-color: grey;
+                border-color: fuchsia; ` : ""}
+
+        ${(props) => props.race === "Android" ? `
+                color: lime;
+                background-color: black;
+                border-color: lime; ` : ""}
+            }
     
     p {
         color: yellow;
@@ -67,6 +100,7 @@ export default function DragonBall(props : { data:Character[] } ){
         <AllCharsDiv >
             {
                 props.data.map((char: Character) =>
+                    //this takes from the Charachter interface, mapping over the data to create single char div
                     <SingleCharDiv key={char.id} race={char.race}>
                         <h1>{char.name}</h1>
                         <img src={char.image} alt={`image of ${char.name}`}/>

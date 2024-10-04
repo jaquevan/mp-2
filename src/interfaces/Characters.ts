@@ -7,11 +7,7 @@ export interface Character{
     ki: string;
     maxKi: string;
 
-    // might add code for thier planet information in the future, perhaps on click it can chnage the information on the
-    // single charachter div
-    originPlanet: {
-        id: number;
-        isDestroyed: boolean;
-        image: string;
-    }
+    // could implement charachter transformations in the fututre, couldnt figure out now
+    transformations: string[];
+
 }
